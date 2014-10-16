@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="chat">
+    <head>
+        <base href="/" />
+        <title>live.chat</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+    </head>
+    <body>
+        <div ng-controller="chatController">
+            <h1>live.chat</h1>
+            <span class="error">{{error}}</span>
+            <div ng-show="isLoggedIn">
+                <ul class="messages">
+                    <li ng-class="item.type" ng-repeat="item in messages track by $index">
+                        <span class="time">[{{item.time * 1000| date: 'HH:mm:ss'}}]</span>
+                        <span class="user">{{item.username}}</span>:
+                        <span class="message"> {{item.message}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div ng-show="isLoggedIn">Message: <input type="text" ng-model="messageToSend" ng-enter="sendMessage(messageToSend)"/></div>
+            <div ng-show="!isLoggedIn">Login: <input type="text" ng-model="username" ng-enter="login(username)"/></div>
+        </div>
+    </body>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="/static/js/chat.js"> </script>
+    <script src="/static/js/controller.js"> </script>
+</html>
